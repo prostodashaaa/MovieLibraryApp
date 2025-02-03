@@ -1,0 +1,51 @@
+.input-field {
+  width: 384px;
+  padding: 12px 16px;
+
+  background: #0000001A;
+  border: 1px solid #323B54;
+  border-radius: 12px;
+
+  transition: background 0.5s;
+}
+
+.input-field__text {
+  width: 100%;
+  padding: 0;
+  border: none;
+
+  color: #ffffff;
+  background: transparent;
+
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.input-field__wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.input-field__wrapper::before {
+  content: url('/public/Search.svg');
+}
+
+.input-field__text::placeholder {
+  color: #475069;
+}
+
+.input-field__text:focus {
+  outline: none;
+}
+
+.input-field:hover,
+.input-field:focus-within {
+  background: #0000003c;
+}
+
+@media (max-width: 600px) {
+  .input-field {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
