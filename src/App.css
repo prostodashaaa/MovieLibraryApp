@@ -1,0 +1,14 @@
+#root {
+  padding: 160px 8% 0;
+}
+
+.top-panel__search {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .top-panel__search {
+    flex-direction: column;
+  }
+}

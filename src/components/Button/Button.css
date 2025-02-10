@@ -1,0 +1,23 @@
+.main-button {
+  font-size: 16px;
+
+  border-radius: 12px;
+  border: 2px solid #7B6EF6;
+
+  background: #7B6EF6;
+  color: #FFFFFF;
+
+  padding: 16px 32px;
+}
+
+.main-button:hover {
+  background: #6055c0;
+  border: 2px solid #6055c0;
+}
+
+@media (max-width: 600px) {
+  .main-button {
+    width: 40%;
+    padding: 16px;
+  }
+}

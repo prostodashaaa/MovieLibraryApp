@@ -1,0 +1,13 @@
+.card-button {
+  padding: 0;
+
+  background: rgba(32, 40, 62, 0.8);
+  border-radius: 12px;
+
+  backdrop-filter: blur(80px);
+  transition: all 0.5s;
+}
+
+.card-button:hover {
+  background: rgba(42, 52, 80, 0.8);
+}
