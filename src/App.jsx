@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
 import CardButton from "./components/CardButton/CardButton";
@@ -7,92 +8,90 @@ import MovieItem from "./components/MovieItem/MovieItem";
 import TitlePage from "./components/Title/TitlePage";
 import BottomPanel from "./layouts/BottomPanel/BottomPanel";
 import TopPanel from "./layouts/TopPanel/TopPanel";
-
-const BASE_PAGE_MOVIES = [
-  {
-    id: 1,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 324,
-    title: "Black Widow",
-  },
-  {
-    id: 2,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 576,
-    title: "Shang Chi",
-  },
-  {
-    id: 3,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 4,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 5,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 6,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 7,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 8,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-  {
-    id: 9,
-    img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",
-    rating: 678,
-    title: "Loki",
-  },
-];
+import PanelInput from "./components/PanelInput/PanelInput";
+import { useLocalStorage } from "./hooks/use-localStorage.hook";
+import { BASE_PAGE_MOVIES } from "./constants/Constants";
+import { UserContext } from "./context/UserContext";
 
 function App() {
-  const data = [
-    {
-      title: "Поиск",
-      text: "Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.",
-    },
-  ];
+  const buttonRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const [userNameData, setUserNameData] = useLocalStorage("data");
+  const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleLogin = () => {
+    if (input.trim()) {
+      setUserNameData((prevData) => {
+        const updatedData = prevData.map((user) =>
+          user.name === input ? { ...user, isLogined: true } : user
+        );
+
+        if (!prevData.some((user) => user.name === input)) {
+          updatedData.push({ name: input, isLogined: true });
+        }
+
+        return updatedData;
+      });
+    }
+    setInput("");
+  };
+
+  const handleLogout = () => {
+    setUserNameData((prevData) =>
+      prevData.map((user) => ({ ...user, isLogined: false }))
+    );
+  };
 
   return (
     <>
-      <Header />
-      <TopPanel>
-        <TitlePage title={data[0].title} text={data[0].text} />
-        <div className="top-panel__search">
-          <Input
-            placeholder={"Введите название"}
-            className="input-field__wrapper"
+      <UserContext.Provider value={{ userNameData, handleLogout }}>
+        <Header />
+        <TopPanel>
+          <TitlePage
+            title={"Поиск"}
+            text={
+              "Введите название фильма, сериала или мультфильма для поиска и добавления в избранное."
+            }
           />
-          <Button text={"Искать"} />
-        </div>
-      </TopPanel>
-      <BottomPanel>
-        {BASE_PAGE_MOVIES.map((el) => (
-          <CardButton key={el.id}>
-            <MovieItem img={el.img} rating={el.rating} title={el.title} />
-          </CardButton>
-        ))}
-      </BottomPanel>
+          <PanelInput isBasedPage={true}>
+            <Input
+              placeholder={(inputRef.current = "Введите название")}
+              isBasePage={true}
+              ref={inputRef}
+            />
+            <Button ref={buttonRef} text={(buttonRef.current = "Искать")} />
+          </PanelInput>
+        </TopPanel>
+        <BottomPanel>
+          {BASE_PAGE_MOVIES.map((el) => (
+            <CardButton key={el.id}>
+              <MovieItem img={el.img} rating={el.rating} title={el.title} />
+            </CardButton>
+          ))}
+        </BottomPanel>
+        <TopPanel>
+          <TitlePage title={"Вход"} />
+          <PanelInput isBasedPage={false}>
+            <Input
+              placeholder={(inputRef.current = "Ваше имя")}
+              isBasePage={false}
+              ref={inputRef}
+              value={input}
+              onChange={handleChange}
+            />
+            <Button
+              ref={buttonRef}
+              text={(buttonRef.current = "Войти в профиль")}
+              onClick={handleLogin}
+            />
+          </PanelInput>
+        </TopPanel>
+      </UserContext.Provider>
     </>
   );
 }
