@@ -23,7 +23,11 @@
 }
 
 .movie-item__description_add:hover {
-  color: rgb(86, 72, 212)
+  color: rgb(255, 255, 255)
+}
+
+.movie-item__description_add:hover img {
+  filter: brightness(2.5);
 }
 
 @media (max-width: 600px) {

@@ -1,19 +1,23 @@
-import "./Input.css";
+import { forwardRef } from "react";
+import styles from "./Input.module.css";
+import classNames from "classnames";
 
-function Input({ placeholder, className }) {
-  const cl = className ? " " + className : "";
-
+const Input = forwardRef(function Input({ isBasePage, placeholder, onChange, value }, ref) {
   return (
-    <div className="input-field">
-      <div className={cl}>
+    <div className={classNames(styles["input-field"])} ref={ref}>
+      <div
+        className={classNames({ [styles["input-field__wrapper"]]: isBasePage })}
+      >
         <input
-          className="input-field__text"
+          className={classNames(styles["input-field__text"])}
           type="text"
           placeholder={placeholder}
+          onChange={onChange}
+          value={value}
         />
       </div>
     </div>
   );
-}
+});
 
 export default Input;
