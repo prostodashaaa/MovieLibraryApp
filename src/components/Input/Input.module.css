@@ -5,6 +5,7 @@
   background: #0000001A;
   border: 1px solid #323B54;
   border-radius: 12px;
+  align-content: center;
 
   transition: background 0.5s;
 }
@@ -28,6 +29,7 @@
 
 .input-field__wrapper::before {
   content: url('/public/Search.svg');
+  max-height: 24px;
 }
 
 .input-field__text::placeholder {
