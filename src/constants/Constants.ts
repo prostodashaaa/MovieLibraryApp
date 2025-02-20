@@ -1,4 +1,11 @@
-export const BASE_PAGE_MOVIES = [
+interface ICardMovie {
+  id: number;
+  img: string;
+  rating: number;
+  title: string;
+}
+
+export const BASE_PAGE_MOVIES: ICardMovie[] = [
   {
     id: 1,
     img: "/public/Shang-Chi-and-the-Legend-of-the-Ten-Rings-Releases-New 1.png",

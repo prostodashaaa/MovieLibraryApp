@@ -1,8 +1,12 @@
 import { forwardRef } from "react";
 import styles from "./Input.module.css";
 import classNames from "classnames";
+import { InputProps } from "./Input.props";
 
-const Input = forwardRef(function Input({ isBasePage, placeholder, onChange, value }, ref) {
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { isBasePage = true, placeholder, onChange, value },
+  ref
+) {
   return (
     <div className={classNames(styles["input-field"])} ref={ref}>
       <div

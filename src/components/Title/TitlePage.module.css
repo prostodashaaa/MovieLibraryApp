@@ -8,13 +8,10 @@
   font-size: 64px;
   font-weight: 600;
   line-height: 80px;
-
 }
 
 .title__text {
-  font-size: 16px;
-
-  color: #8E95A9;
+  color: var(--grey);
 
   width: 40%;
 }

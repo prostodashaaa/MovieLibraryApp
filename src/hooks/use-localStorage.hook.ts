@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-export function useLocalStorage(key) {
+export function useLocalStorage(key: string) {
   const [data, setData] = useState(() => {
     const storedData = localStorage.getItem(key);
-    return storedData ? JSON.parse(storedData) : [];
+    return storedData ? (JSON.parse(storedData)) : [];
   });
 
   useEffect(() => {
