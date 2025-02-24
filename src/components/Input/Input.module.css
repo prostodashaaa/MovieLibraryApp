@@ -12,10 +12,10 @@
 
 .input-field__text {
   width: 100%;
-  padding: 0;
+  padding: var(--zero-padding);
   border: none;
 
-  color: #ffffff;
+  color: var(--white);
   background: transparent;
 
   font-size: 14px;

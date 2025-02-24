@@ -1,7 +1,7 @@
 .card-button {
-  padding: 0;
+  padding: var(--zero-padding);
 
-  background: rgba(32, 40, 62, 0.8);
+  background: #20283ecc;
   border-radius: 12px;
 
   backdrop-filter: blur(80px);
@@ -9,5 +9,5 @@
 }
 
 .card-button:hover {
-  background: rgba(42, 52, 80, 0.8);
+  background: #2a3450cc;
 }
