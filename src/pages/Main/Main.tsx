@@ -15,7 +15,7 @@ import { SearchError } from "../Error/SearchError";
 export function Main() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [movies, setMovies] = useState<ICardMovie[]>([]);
+  const [movies, setMovies] = useState<ICardMovie[] | null>(null);
   const [input, setInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
@@ -70,10 +70,10 @@ export function Main() {
       <div className={classNames(styles["bottom-panel"])}>
         {!isLoading &&
           !error &&
-          (movies.length == 0 ? (
+          (movies?.length == 0 ? (
             <SearchError />
           ) : (
-            movies.map((el) => (
+            movies?.map((el) => (
               <CardButton key={el["#IMDB_ID"]}>
                 <MovieItem
                   img={

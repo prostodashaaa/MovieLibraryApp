@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useLocalStorage } from "../hooks/use-localStorage.hook";
-import { useNavigate } from "react-router-dom";
 
 export interface User {
   name: string;
@@ -23,8 +22,6 @@ export const useUser = () => {
   return context;
 };
 
-// const navigator = useNavigate();
-
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userNameData, setUserNameData] = useLocalStorage("data");
 
@@ -46,8 +43,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setUserNameData((prevData: User[]) =>
       prevData.map((user) => ({ ...user, isLogined: false }))
     );
-    const navigate = useNavigate(); 
-    navigate("/login"); 
   };
 
   return (
