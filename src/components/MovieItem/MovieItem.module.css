@@ -13,7 +13,9 @@
 .movie-item__image img {
   border-radius: 8px;
   width: 100%;
+  height: 100%;
 
+  aspect-ratio: 266/400;
   object-fit: cover;
 }
 
@@ -32,6 +34,14 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.movie-item__rating_image img {
+  display: block;
+  align-self: center;
+  
+  max-height: 16px;
+  max-width: 16px;
 }
 
 .movie-item__rating_count {

@@ -1,4 +1,7 @@
-export function Error() {
+import classNames from "classnames";
+import styles from "./Error.module.css";
+import { ErrorProps } from "./Error.props";
 
-  return <div>Error</div>;
+export function ErrorPage({ children }: ErrorProps) {
+  return <div className={classNames(styles.error)}>{children}</div>;
 }
