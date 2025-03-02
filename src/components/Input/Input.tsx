@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { InputProps } from "./Input.props";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { isBasePage = true, placeholder, onChange, value },
+  { isBasePage = true, placeholder, onChange, value, ...props },
   ref
 ) {
   return (
@@ -18,6 +18,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          {...props}
         />
       </div>
     </div>

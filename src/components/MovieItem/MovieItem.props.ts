@@ -1,5 +1,5 @@
 export interface MovieItemProps {
-  id: number;
+  id: string;
   img: string;
   rating: number;
   title: string;

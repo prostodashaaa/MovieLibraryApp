@@ -4,12 +4,14 @@ import Input from "../../components/Input/Input";
 import PanelInput from "../../components/PanelInput/PanelInput";
 import TitlePage from "../../components/Title/TitlePage";
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [input, setInput] = useState("");
   const { handleLogin } = useUser();
+  const navigator = useNavigate();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -23,6 +25,7 @@ export function Login() {
     if (input.trim()) {
       handleLogin(input);
       setInput("");
+      navigator("/");
     }
   };
 

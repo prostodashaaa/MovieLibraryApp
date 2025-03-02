@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import classNames from "classnames";
 import { useUser } from "../../context/UserContext";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   const { userNameData, handleLogout } = useUser();
@@ -16,9 +16,12 @@ function Header() {
         <li className={classNames(styles["header__nav-item"])}>
           <NavLink
             className={({ isActive }) =>
-              classNames({
-                [styles.active]: isActive,
-              }, styles["header__nav-item_a"])
+              classNames(
+                {
+                  [styles.active]: isActive,
+                },
+                styles["header__nav-item_a"]
+              )
             }
             to={"/"}
           >
@@ -28,9 +31,12 @@ function Header() {
         <li className={classNames(styles["header__nav-item"])}>
           <NavLink
             className={({ isActive }) =>
-              classNames({
-                [styles.active]: isActive,
-              }, styles["header__nav-item_a"])
+              classNames(
+                {
+                  [styles.active]: isActive,
+                },
+                styles["header__nav-item_a"]
+              )
             }
             to={"/favorites"}
           >
@@ -40,12 +46,8 @@ function Header() {
         {loggedInUser ? (
           <>
             <li className={classNames(styles["header__nav-item"])}>
-              <NavLink
-                className={({ isActive }) =>
-                  classNames({
-                    [styles.active]: isActive,
-                  }, styles["header__nav-item_a"])
-                }
+              <Link
+                className={classNames(styles["header__nav-item_a"])}
                 to={"/"}
               >
                 {loggedInUser.name}
@@ -54,16 +56,19 @@ function Header() {
                   alt="Личный кабинет"
                   className={classNames(styles["header__nav-item-image"])}
                 />
-              </NavLink>
+              </Link>
             </li>
             <li className={classNames(styles["header__nav-item"])}>
               <NavLink
                 className={({ isActive }) =>
-                  classNames({
-                    [styles.active]: isActive,
-                  }, styles["header__nav-item_a"])
+                  classNames(
+                    {
+                      [styles.active]: isActive,
+                    },
+                    styles["header__nav-item_a"]
+                  )
                 }
-                to={"/"}
+                to={"/login"}
                 onClick={handleLogout}
               >
                 Выйти
@@ -74,9 +79,12 @@ function Header() {
           <li className={classNames(styles["header__nav-item"])}>
             <NavLink
               className={({ isActive }) =>
-                classNames({
-                  [styles.active]: isActive,
-                }, styles["header__nav-item_a"])
+                classNames(
+                  {
+                    [styles.active]: isActive,
+                  },
+                  styles["header__nav-item_a"]
+                )
               }
               to={"/login"}
             >
