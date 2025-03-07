@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
-import { User } from "../context/UserContext";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { RootState } from "../store/store";
 
 export const RequireAuth = ({ children }: { children: ReactNode }) => {
-  const data = localStorage.getItem("data");
-  const storedData: User[] = data ? JSON.parse(data) : [];
+  const users = useSelector((s: RootState) => s.user.users);
 
-  if (storedData.some((user) => user.isLogined == true)) {
+  if (users.some((i) => i.isLogined == true)) {
     return children;
   }
-  
+
   return <Navigate to="/login" />;
 };

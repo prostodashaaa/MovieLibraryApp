@@ -1,11 +1,21 @@
 import styles from "./Header.module.css";
 import classNames from "classnames";
-import { useUser } from "../../context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { AppDispatch, RootState } from "../../store/store";
+import { userActions } from "../../store/user.slice";
+import { searchActions } from "../../store/search.slice";
 
 function Header() {
-  const { userNameData, handleLogout } = useUser();
-  const loggedInUser = userNameData.find((user) => user.isLogined);
+  const users = useSelector((s: RootState) => s.user.users);
+  const dispatch = useDispatch<AppDispatch>();
+  const loggedInUser = users.find((user) => user.isLogined);
+
+  const handleLogout = () => {
+    dispatch(userActions.logout(loggedInUser?.name));
+    dispatch(searchActions.setQuery(""));
+    dispatch(searchActions.setMovies(null));
+  };
 
   return (
     <div className={classNames(styles.header)}>
@@ -35,12 +45,18 @@ function Header() {
                 {
                   [styles.active]: isActive,
                 },
-                styles["header__nav-item_a"]
+                styles["header__nav-item_a"],
+                styles["header__nav-item_a-flex"]
               )
             }
             to={"/favorites"}
           >
             Мои фильмы
+            {loggedInUser && loggedInUser.items.length > 0 && (
+              <div className={classNames(styles["header__nav-item-count"])}>
+                {loggedInUser.items.length}
+              </div>
+            )}
           </NavLink>
         </li>
         {loggedInUser ? (

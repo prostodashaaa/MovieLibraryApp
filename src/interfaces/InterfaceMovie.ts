@@ -14,13 +14,13 @@ export interface ICardMovie {
 export interface IExtendedCardMovie {
   name: string;
   image: string;
-  description: string;
-  datePublished: string;
-  aggregateRating: AggregateRating;
-  duration: string;
+  description?: string;
+  datePublished?: string;
+  aggregateRating?: AggregateRating;
+  duration?: string;
   "@type": string;
   genre: string[];
-  review: Review;
+  review?: Review;
 }
 
 export interface Review {
