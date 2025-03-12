@@ -12,6 +12,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       className={classNames(styles.button, {
         [styles["main-button"]]: appearence === "main",
         [styles["movie-item__description_add"]]: appearence === "favourite",
+        [styles["movie-item__description_done"]]: appearence === "done-favourite",
       })}
       onClick={onClick}
       ref={ref}

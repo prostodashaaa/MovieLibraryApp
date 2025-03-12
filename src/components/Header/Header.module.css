@@ -49,12 +49,34 @@
   transition: all 0.5s;
 }
 
+.header__nav-item_a-flex {
+  display: flex;
+  gap: 8px;
+}
+
+.header__nav-item-count {
+  display: flex;
+  justify-content: center;
+
+  font-size: 14px;
+  line-height: 24px;
+
+  background-color: var(--primary-purple);
+  color: var(--white);
+
+  border-radius: 50%;
+
+  width: 24px;
+  height: 24px;
+}
+
 .header__nav-item_a:hover,
 .active {
   color: var(--white);
 }
 
-.header__nav-item_a:hover .header__nav-item-image, .active .header__nav-item-image {
+.header__nav-item_a:hover .header__nav-item-image,
+.active .header__nav-item-image {
   filter: brightness(1.5);
   transition: filter 0.5s;
 }

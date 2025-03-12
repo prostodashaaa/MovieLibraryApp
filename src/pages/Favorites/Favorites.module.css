@@ -1,0 +1,16 @@
+.bottom-panel {
+  padding: 40px 0 0 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 290px));
+  gap: 16px 24px;
+  justify-content: flex-start;
+}
+
+.error {
+  font-size: 20px;
+  line-height: 32px;
+
+  text-align: center;
+  padding: 40px 0 0 0;
+}
